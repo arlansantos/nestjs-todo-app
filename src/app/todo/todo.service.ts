@@ -14,4 +14,8 @@ export class TodoService {
   async create(data: CreateTodoDto): Promise<void> {
     await this.todoRepository.save(this.todoRepository.create(data));
   }
+
+  async findAll(): Promise<TodoEntity[]> {
+    return await this.todoRepository.find();
+  }
 }
