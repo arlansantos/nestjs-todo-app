@@ -1,4 +1,11 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 
@@ -14,5 +21,10 @@ export class TodoController {
   @Get()
   async index() {
     return await this.todoService.findAll();
+  }
+
+  @Get(':id')
+  async select(@Param('id', new ParseUUIDPipe()) id: string) {
+    return await this.todoService.findOneOrFail(id);
   }
 }

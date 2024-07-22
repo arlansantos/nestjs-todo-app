@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { Repository } from 'typeorm';
 import { TodoEntity } from './entity/todo.entity';
@@ -17,5 +17,15 @@ export class TodoService {
 
   async findAll(): Promise<TodoEntity[]> {
     return await this.todoRepository.find();
+  }
+
+  async findOneOrFail(id: string): Promise<TodoEntity> {
+    try {
+      return await this.todoRepository.findOneOrFail({
+        where: { id },
+      });
+    } catch (error) {
+      throw new NotFoundException(`task with id: ${id} not found`);
+    }
   }
 }
