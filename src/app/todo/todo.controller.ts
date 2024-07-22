@@ -5,9 +5,11 @@ import {
   Get,
   Param,
   ParseUUIDPipe,
+  Put,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
+import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Controller('todo')
 export class TodoController {
@@ -26,5 +28,13 @@ export class TodoController {
   @Get(':id')
   async select(@Param('id', new ParseUUIDPipe()) id: string) {
     return await this.todoService.findOneOrFail(id);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() data: UpdateTodoDto,
+  ) {
+    return await this.todoService.update(id, data);
   }
 }
