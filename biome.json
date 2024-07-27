@@ -1,0 +1,25 @@
+{
+	"formatter": {
+		"enabled": true
+	},
+
+	"organizeImports": {
+		"enabled": true
+	},
+
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		},
+		"parser": {
+			"unsafeParameterDecoratorsEnabled": true
+		}
+	},
+
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	}
+}
