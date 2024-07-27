@@ -1,9 +1,9 @@
 import { IsNotEmpty } from 'class-validator';
 
 export class CreateTodoDto {
-  @IsNotEmpty()
-  task: string;
+	@IsNotEmpty({ message: 'the "task" parameter should not be empty' })
+	task: string;
 
-  @IsNotEmpty()
-  isDone: boolean;
+	@IsNotEmpty({ message: 'the "isDone" parameter should not be empty' })
+	isDone: boolean;
 }
